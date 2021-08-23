@@ -9,6 +9,18 @@
         "options": {
           "cwd": "${workspaceFolder}/frontend"
         }
+      },
+      {
+        "type": "cargo",
+        "command": "build",
+        "problemMatcher": [
+          "$rustc"
+        ],
+        "group": "build",
+        "label": "rust: cargo build backend", 
+        "options": {
+          "cwd": "${workspaceFolder}/backend"
+        },
       }
     ]
   }
