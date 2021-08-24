@@ -5,27 +5,38 @@
     "version": "0.2.0",
     "compounds": [
         {
-            "name": "Debug frontend/backend",
-            "configurations": ["Launch backend", "vuejs: chrome"], 
-            "presentation": {
-                "hidden": false,
-                "group": "",
-                "order": 1
-            }
+            "name": "(gdb) frontend/backend",
+            "configurations": ["(gdb) Launch backend", "Launch frontend"], 
+        },
+        {
+            "name": "(Windows) frontend/backend",
+            "configurations": ["(Windows) Launch backend", "Launch frontend"], 
         }
     ],
-    "configurations": [        
+    "configurations": [
         {
-            "name": "Launch backend",
-            "type": "cppdbg",
+            "name": "(Windows) Launch backend",
+            "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/backend/target/debug/thp-backend",
+            "program": "${workspaceFolder}/backend/target/debug/backend.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "console": "externalTerminal",            
+            "preLaunchTask": "rust: cargo build backend"
+        },
+        {
+            "name": "(gdb) Launch backend",            
+            "request": "launch",
+            "type": "cppdbg",
+            "MIMode": "gdb",
+            "program": "${workspaceFolder}/backend/target/debug/backend",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -33,13 +44,12 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "rust: cargo build backend",
+            "preLaunchTask": "rust: cargo build backend"
         },
         {
-            "type": "pwa-chrome",
+            "type": "pwa-msedge",
             "request": "launch",
-            "runtimeExecutable": "/sbin/chromium",
-            "name": "vuejs: chrome",
+            "name": "Launch frontend",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}",
             "breakOnLoad": true,
@@ -53,7 +63,7 @@
               "/*": "*",
               "/./~/*": "${webRoot}/node_modules/*"
             },
-            "preLaunchTask": "vuejs: start"
+            "preLaunchTask": "vuejs: start",            
           }
     ]
 }
