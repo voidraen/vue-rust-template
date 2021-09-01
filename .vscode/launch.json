@@ -5,12 +5,18 @@
     "version": "0.2.0",
     "compounds": [
         {
-            "name": "(gdb) frontend/backend",
-            "configurations": ["(gdb) Launch backend", "Launch frontend"], 
+            "name": "frontend/backend",
+            "configurations": [
+                "(gdb) Launch backend",
+                "Launch frontend (chromium)"
+            ],
         },
         {
             "name": "(Windows) frontend/backend",
-            "configurations": ["(Windows) Launch backend", "Launch frontend"], 
+            "configurations": [
+                "(Windows) Launch backend",
+                "Launch frontend (edge)"
+            ],
         }
     ],
     "configurations": [
@@ -23,11 +29,11 @@
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "console": "externalTerminal",            
+            "console": "externalTerminal",
             "preLaunchTask": "rust: cargo build backend"
         },
         {
-            "name": "(gdb) Launch backend",            
+            "name": "(gdb) Launch backend",
             "request": "launch",
             "type": "cppdbg",
             "MIMode": "gdb",
@@ -54,16 +60,20 @@
             "webRoot": "${workspaceFolder}",
             "breakOnLoad": true,
             "pathMapping": {
-              "/_karma_webpack_": "${workspaceFolder}"
+                "/_karma_webpack_": "${workspaceFolder}"
             },
             "sourceMapPathOverrides": {
-              "webpack:/*": "${webRoot}/*",
-              "/./*": "${webRoot}/*",
-              "/src/*": "${webRoot}/*",
-              "/*": "*",
-              "/./~/*": "${webRoot}/node_modules/*"
+                "webpack:/*": "${webRoot}/*",
+                "/./*": "${webRoot}/*",
+                "/src/*": "${webRoot}/*",
+                "/*": "*",
+                "/./~/*": "${webRoot}/node_modules/*"
             },
-            "preLaunchTask": "vuejs: start",            
-          }
+            "preLaunchTask": "vuejs: serve",
+            "postDebugTask": "Terminate Vue Serve",
+            "linux": {
+                "runtimeExecutable": "/sbin/chromium",
+            }
+        }
     ]
 }
