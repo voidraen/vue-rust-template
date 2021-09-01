@@ -8,14 +8,14 @@
             "name": "frontend/backend",
             "configurations": [
                 "(gdb) Launch backend",
-                "Launch frontend (chromium)"
+                "Launch frontend"
             ],
         },
         {
             "name": "(Windows) frontend/backend",
             "configurations": [
                 "(Windows) Launch backend",
-                "Launch frontend (edge)"
+                "Launch frontend"
             ],
         }
     ],
